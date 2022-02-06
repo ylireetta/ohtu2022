@@ -1,14 +1,17 @@
 package ohtu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ostoskori {
     private int tavaroidenLkm;
     private int hintaYht;
+    private List<Ostos> ostokset;
     
     public Ostoskori() {
         this.tavaroidenLkm = 0;
         this.hintaYht = 0;
+        this.ostokset = new ArrayList<>();
     }
  
     public int tavaroitaKorissa() {
@@ -29,6 +32,8 @@ public class Ostoskori {
  
     public void lisaaTuote(Tuote lisattava) {
         // lisää tuotteen
+        Ostos uusiOstos = new Ostos(lisattava);
+        ostokset.add(uusiOstos);
         tavaroidenLkm++;
         hintaYht += lisattava.getHinta();
     }
@@ -39,8 +44,8 @@ public class Ostoskori {
  
     public List<Ostos> ostokset() {
         // palauttaa listan jossa on korissa olevat ostokset
- 
-        return null;
+        
+        return ostokset;
     }
  
     public void tyhjenna() {
