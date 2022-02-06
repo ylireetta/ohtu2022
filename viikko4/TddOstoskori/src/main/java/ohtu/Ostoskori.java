@@ -30,6 +30,7 @@ public class Ostoskori {
     public void lisaaTuote(Tuote lisattava) {
         // lisää tuotteen
         tavaroidenLkm++;
+        hintaYht += lisattava.getHinta();
     }
  
     public void poista(Tuote poistettava) {
