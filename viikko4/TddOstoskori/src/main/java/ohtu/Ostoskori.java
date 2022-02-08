@@ -55,9 +55,15 @@ public class Ostoskori {
         for (Ostos o : ostokset) {
             if (o.tuotteenNimi().equals(poistettava.getNimi())) {
                 o.muutaLukumaaraa(-1);
+                if (o.lukumaara() == 0) {
+                    ostokset.remove(o);
+                }
                 break;
             }
         }
+        
+        tavaroidenLkm--;
+        hintaYht -= poistettava.getHinta();
         
     }
  
