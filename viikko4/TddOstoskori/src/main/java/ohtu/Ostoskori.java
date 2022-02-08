@@ -75,5 +75,8 @@ public class Ostoskori {
  
     public void tyhjenna() {
         // tyhjentää korin
+        ostokset.clear();
+        hintaYht = 0;
+        tavaroidenLkm = 0;
     }
 }
