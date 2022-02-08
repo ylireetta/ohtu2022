@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ostoskori {
-    private int tavaroidenLkm;
-    private int hintaYht;
     private List<Ostos> ostokset;
     
     public Ostoskori() {
-        this.tavaroidenLkm = 0;
-        this.hintaYht = 0;
         this.ostokset = new ArrayList<>();
     }
  
@@ -20,6 +16,11 @@ public class Ostoskori {
         //   tulee metodin palauttaa 2 
         // jos korissa on 1 kpl tuotetta "maito" ja 1 kpl tuotetta "juusto", 
         //   tulee metodin palauttaa 2   
+        int tavaroidenLkm = 0;
+        
+        for (Ostos o : ostokset) {
+            tavaroidenLkm += o.lukumaara();
+        }
 
         return tavaroidenLkm;
     }
@@ -27,6 +28,12 @@ public class Ostoskori {
     public int hinta() {
         // kertoo korissa olevien tuotteiden yhteenlasketun hinnan
  
+        int hintaYht = 0;
+        
+        for (Ostos o : ostokset) {
+            hintaYht += o.hinta();
+        }
+        
         return hintaYht;
     }
  
@@ -45,9 +52,6 @@ public class Ostoskori {
             Ostos uusiOstos = new Ostos(lisattava);
             ostokset.add(uusiOstos);
         }
-        
-        tavaroidenLkm++;
-        hintaYht += lisattava.getHinta();
     }
  
     public void poista(Tuote poistettava) {
@@ -62,9 +66,6 @@ public class Ostoskori {
             }
         }
         
-        tavaroidenLkm--;
-        hintaYht -= poistettava.getHinta();
-        
     }
  
     public List<Ostos> ostokset() {
@@ -76,7 +77,5 @@ public class Ostoskori {
     public void tyhjenna() {
         // tyhjentää korin
         ostokset.clear();
-        hintaYht = 0;
-        tavaroidenLkm = 0;
     }
 }
