@@ -31,9 +31,21 @@ public class Ostoskori {
     }
  
     public void lisaaTuote(Tuote lisattava) {
-        // lisää tuotteen
-        Ostos uusiOstos = new Ostos(lisattava);
-        ostokset.add(uusiOstos);
+        boolean lisattyAiemmin = false;
+        
+        for (Ostos o : ostokset) {
+            if (o.tuotteenNimi().equals(lisattava.getNimi())) {
+                lisattyAiemmin = true;
+                o.muutaLukumaaraa(1);
+                break;
+            }
+        }
+        // jos tuotetta ei ole vielä korissa, lisää uutena
+        if (!lisattyAiemmin) {
+            Ostos uusiOstos = new Ostos(lisattava);
+            ostokset.add(uusiOstos);
+        }
+        
         tavaroidenLkm++;
         hintaYht += lisattava.getHinta();
     }
